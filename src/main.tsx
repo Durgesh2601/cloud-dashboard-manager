@@ -1,19 +1,26 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import App from "./App.tsx";
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import Applications from "./pages/Applications.tsx";
 import NotFound from "./components/NotFound/index.tsx";
+import AppLayout from "./App.tsx";
 import "./index.css";
 
 const router = createBrowserRouter([
   {
-    path: "/",
-    element: <App />,
-    errorElement: <NotFound />,
-  },
-  {
-    path: "/connections",
-    errorElement: <NotFound />,
+    element: <AppLayout />,
+    children: [
+      {
+        path: "/",
+        element: <Applications />,
+        errorElement: <NotFound />,
+      },
+      {
+        path: "*",
+        element: <NotFound />,
+        errorElement: <NotFound />,
+      },
+    ],
   },
 ]);
 

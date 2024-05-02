@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Drawer from "@mui/material/Drawer";
 import List from "@mui/material/List";
 import ListItemIcon from "@mui/material/ListItemIcon";
@@ -51,7 +52,7 @@ const DrawerHeader = styled("div")(({ theme }) => ({
   display: "flex",
   alignItems: "center",
   gap: 12,
-  borderBottom: "1px solid lightgrey",
+  borderBottom: "1px solid #F8F8F8",
   ...theme.mixins.toolbar,
 }));
 
@@ -63,6 +64,7 @@ const menuIconsStyle = {
 function Sidebar() {
   const [open, setOpen] = useState(false);
   const [selectedMenu, setSelectedMenu] = useState(PrimaryMenuItems[0]?.id);
+  const navigate = useNavigate();
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -74,7 +76,7 @@ function Sidebar() {
 
   const handleSelectMenu = (id: number, link: string) => {
     setSelectedMenu(id);
-    window.location.href = link;
+    navigate(link);
   };
 
   const renderMenuItem = (item: any) => {

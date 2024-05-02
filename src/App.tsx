@@ -1,13 +1,16 @@
-import { ThemeProvider } from "@emotion/react";
-import MainLayout from "./pages";
-import theme from "./theme";
+import { Suspense, lazy } from "react";
+import { Outlet } from "react-router-dom";
+import LoaderScreen from "./components/LoaderScreen";
 
-function App() {
-  return (
-    <ThemeProvider theme={theme}>
+const MainLayout = lazy(() => import("./pages/index"));
+
+const AppLayout = () => (
+  <>
+    <Suspense fallback={<LoaderScreen />}>
       <MainLayout />
-    </ThemeProvider>
-  );
-}
+    </Suspense>
+    <Outlet />
+  </>
+);
 
-export default App;
+export default AppLayout;
