@@ -82,7 +82,7 @@ const TopBar = () => {
         <Select
           value="JD"
           sx={{
-            height: 35,
+            height: 30,
             border: "none",
             "& .MuiOutlinedInput-notchedOutline": {
               border: "none",
