@@ -1,19 +1,19 @@
 import { Grid } from "@mui/material";
+import TopBar from "../components/Applications/TopBar";
+import AppsHeader from "../components/Applications/Header";
+import AppTabs from "../components/Applications/Tabs";
 
 const Applications = () => {
   return (
-    <Grid item xs position="absolute" right={0} left={70}>
-      <Grid
-        sx={{
-          background: "#FFFFFF",
-          position: "sticky",
-          top: 0,
-          zIndex: 999,
-          borderBottom: "1px solid red",
+    <Grid item xs position="absolute" right={0} left={210}>
+      <TopBar />
+      <AppsHeader
+        application={{
+          id: 1,
+          name: "tic-tac-toc",
         }}
-      >
-        Applications
-      </Grid>
+      />
+      <AppTabs />
     </Grid>
   );
 };

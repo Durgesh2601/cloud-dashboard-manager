@@ -1,9 +1,11 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
+import { CssBaseline, ThemeProvider } from "@mui/material";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import Applications from "./pages/Applications.tsx";
 import NotFound from "./components/NotFound/index.tsx";
 import AppLayout from "./App.tsx";
+import theme from "./theme.ts";
 import "./index.css";
 
 const router = createBrowserRouter([
@@ -26,6 +28,9 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <RouterProvider router={router} />
+    </ThemeProvider>
   </React.StrictMode>
 );

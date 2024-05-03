@@ -21,7 +21,7 @@ import {
 import { PrimaryMenuItems, SecondaryMenuItems } from "./MenuItems";
 import Logo from "../../assets/Logo.svg";
 
-const drawerWidth = 220;
+const drawerWidth = 200;
 
 const openedMixin = (theme: Theme): CSSObject => ({
   width: drawerWidth,
@@ -52,7 +52,7 @@ const DrawerHeader = styled("div")(({ theme }) => ({
   display: "flex",
   alignItems: "center",
   gap: 12,
-  borderBottom: "1px solid #F8F8F8",
+  borderBottom: "2px solid #461988",
   ...theme.mixins.toolbar,
 }));
 
@@ -138,7 +138,12 @@ function Sidebar() {
       {/* Bottom actions */}
       <List sx={{ marginTop: "auto" }}>
         {SecondaryMenuItems.map((item) => renderMenuItem(item))}
-        <ListItemButton onClick={open ? handleDrawerClose : handleDrawerOpen}>
+        <ListItemButton
+          sx={{
+            borderTop: "2px solid #461988",
+          }}
+          onClick={open ? handleDrawerClose : handleDrawerOpen}
+        >
           <ListItemIcon sx={{ minWidth: 50 }}>
             {open ? (
               <MdKeyboardDoubleArrowLeft {...menuIconsStyle} />
