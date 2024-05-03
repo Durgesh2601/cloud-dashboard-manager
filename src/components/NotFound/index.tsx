@@ -4,7 +4,7 @@ import { Link as RouterLink } from "react-router-dom";
 const NotFound = () => {
   return (
     <Container>
-      <Typography variant="h1" align="center" gutterBottom>
+      <Typography mt={5} variant="h2" align="center" gutterBottom>
         404 - Page Not Found
       </Typography>
       <Typography variant="body1" align="center" paragraph>
