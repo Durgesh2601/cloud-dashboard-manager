@@ -9,6 +9,9 @@ export const CUSTOM_COLORS = {
 const theme = createTheme({
   palette: {
     primary: deepPurple,
+    background: {
+      default: "#f8f8f8",
+    },
   },
   typography: {
     fontFamily: ["Inter, sans-serif"].join(","),

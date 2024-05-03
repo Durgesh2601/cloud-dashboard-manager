@@ -70,7 +70,9 @@ const TopBar = () => {
             label="Applications"
           >
             {applications.map((app) => (
-              <MenuItem value={app?.id}>{app?.name}</MenuItem>
+              <MenuItem key={app?.id} value={app?.id}>
+                {app?.name}
+              </MenuItem>
             ))}
           </Select>
         </FormControl>

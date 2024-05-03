@@ -5,7 +5,7 @@ import AppTabs from "../components/Applications/Tabs";
 
 const Applications = () => {
   return (
-    <Grid item xs position="absolute" right={0} left={210}>
+    <Grid item xs position="absolute" right={0} left={210} p={1}>
       <TopBar />
       <AppsHeader
         application={{
