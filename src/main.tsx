@@ -7,6 +7,7 @@ import NotFound from "./components/NotFound/index.tsx";
 import AppLayout from "./App.tsx";
 import theme from "./theme.ts";
 import "./index.css";
+import { LayoutProvider } from "./context/LayoutContext.tsx";
 
 const router = createBrowserRouter([
   {
@@ -30,7 +31,9 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <RouterProvider router={router} />
+      <LayoutProvider>
+        <RouterProvider router={router} />
+      </LayoutProvider>
     </ThemeProvider>
   </React.StrictMode>
 );

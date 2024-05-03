@@ -20,6 +20,7 @@ import {
 } from "react-icons/md";
 import { PrimaryMenuItems, SecondaryMenuItems } from "./MenuItems";
 import Logo from "../../assets/Logo.svg";
+import { useLayout } from "../../context/LayoutContext";
 
 const drawerWidth = 200;
 
@@ -62,16 +63,16 @@ const menuIconsStyle = {
 };
 
 function Sidebar() {
-  const [open, setOpen] = useState(false);
+  const { isDrawerOpen, setIsDrawerOpen } = useLayout();
   const [selectedMenu, setSelectedMenu] = useState(PrimaryMenuItems[0]?.id);
   const navigate = useNavigate();
 
   const handleDrawerOpen = () => {
-    setOpen(true);
+    setIsDrawerOpen(true);
   };
 
   const handleDrawerClose = () => {
-    setOpen(false);
+    setIsDrawerOpen(false);
   };
 
   const handleSelectMenu = (id: number, link: string) => {
@@ -121,11 +122,17 @@ function Sidebar() {
   return (
     <Drawer
       variant="permanent"
-      open={open}
+      open={isDrawerOpen}
       sx={{
         width: drawerWidth,
-        ...(open && { ...openedMixin, "& .MuiDrawer-paper": openedMixin }),
-        ...(!open && { ...closedMixin, "& .MuiDrawer-paper": closedMixin }),
+        ...(isDrawerOpen && {
+          ...openedMixin,
+          "& .MuiDrawer-paper": openedMixin,
+        }),
+        ...(!isDrawerOpen && {
+          ...closedMixin,
+          "& .MuiDrawer-paper": closedMixin,
+        }),
       }}
     >
       <DrawerHeader>
@@ -142,10 +149,10 @@ function Sidebar() {
           sx={{
             borderTop: "2px solid #461988",
           }}
-          onClick={open ? handleDrawerClose : handleDrawerOpen}
+          onClick={isDrawerOpen ? handleDrawerClose : handleDrawerOpen}
         >
           <ListItemIcon sx={{ minWidth: 50 }}>
-            {open ? (
+            {isDrawerOpen ? (
               <MdKeyboardDoubleArrowLeft {...menuIconsStyle} />
             ) : (
               <MdKeyboardDoubleArrowRight {...menuIconsStyle} />
