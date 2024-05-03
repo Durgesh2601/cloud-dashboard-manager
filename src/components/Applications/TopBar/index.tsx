@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Avatar,
   FormControl,
@@ -9,38 +9,20 @@ import {
   SelectChangeEvent,
 } from "@mui/material";
 import { orange } from "@mui/material/colors";
+import { Application } from "../../../pages/Applications";
 
-const TopBar = () => {
-  const [applications, setApplications] = useState([
-    {
-      id: 1,
-      name: "tic-tac-toc",
-      status: "deployed",
-      version: "1.2.1",
-      updatedAt: "1714454128",
-      desiredVersion: "1.2.2",
-    },
-    {
-      id: 2,
-      name: "sudoku",
-      status: "uninstalled",
-      version: "null",
-      updatedAt: "1714443328",
-      desiredVersion: "2.2.0",
-    },
-    {
-      id: 3,
-      name: "chess",
-      status: "deployed",
-      version: "9.0.8",
-      updatedAt: "1714356928",
-      desiredVersion: "9.0.8",
-    },
-  ]);
-  const [selectedApp, setSelectedApp] = useState(applications[0]?.id);
+interface TopBarProps {
+  applications: Application[];
+  selectedApp: number | string;
+  setSelectedApp: (id: number) => void;
+}
+
+const TopBar = ({ applications, selectedApp, setSelectedApp }: TopBarProps) => {
+
   const handleChangeApp = (event: SelectChangeEvent) => {
     setSelectedApp(Number(event.target.value));
   };
+
   return (
     <Grid
       container
@@ -69,7 +51,7 @@ const TopBar = () => {
             }}
             label="Applications"
           >
-            {applications.map((app) => (
+            {applications?.map((app) => (
               <MenuItem key={app?.id} value={app?.id}>
                 {app?.name}
               </MenuItem>

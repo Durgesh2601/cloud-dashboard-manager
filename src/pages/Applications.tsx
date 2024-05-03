@@ -5,6 +5,16 @@ import TopBar from "../components/Applications/TopBar";
 import AppsHeader from "../components/Applications/Header";
 import AppTabs from "../components/Applications/Tabs";
 import { useLayout } from "../context/LayoutContext";
+import { getApplications } from "../api";
+
+export interface Application {
+  id: number;
+  name: string;
+  status: string;
+  version: string | null;
+  updatedAt: string;
+  desiredVersion: string;
+}
 
 const TransitionGrid = styled(Grid)(({ theme }) => ({
   transition: theme.transitions.create("margin", {
@@ -17,8 +27,22 @@ const TransitionGrid = styled(Grid)(({ theme }) => ({
 }));
 
 const Applications = () => {
-  const { isDrawerOpen } = useLayout();
   const [marginLeft, setMarginLeft] = useState(0);
+  const [applications, setApplications] = useState<Application[]>([]);
+  const [selectedApp, setSelectedApp] = useState<number | string>("");
+  const { isDrawerOpen } = useLayout();
+
+  useEffect(() => {
+    (async function fetchApplications() {
+      try {
+        const response = await getApplications();
+        setApplications(response);
+        setSelectedApp(response[0].id);
+      } catch (error) {
+        console.error("Error fetching applications:", error);
+      }
+    })();
+  }, []);
 
   useEffect(() => {
     setMarginLeft(isDrawerOpen ? 200 : 65);
@@ -27,12 +51,17 @@ const Applications = () => {
   return (
     <TransitionGrid style={{ marginLeft }}>
       <Grid item xs>
-        <TopBar />
+        <TopBar
+          applications={applications}
+          selectedApp={selectedApp}
+          setSelectedApp={setSelectedApp}
+        />
         <AppsHeader
-          application={{
-            id: 1,
-            name: "tic-tac-toc",
-          }}
+          application={
+            selectedApp
+              ? applications?.find((app) => app.id === selectedApp)
+              : applications?.[0]
+          }
         />
         <AppTabs />
       </Grid>
