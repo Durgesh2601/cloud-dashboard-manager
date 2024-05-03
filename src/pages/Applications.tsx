@@ -6,29 +6,26 @@ import AppsHeader from "../components/Applications/Header";
 import AppTabs from "../components/Applications/Tabs";
 import { useLayout } from "../context/LayoutContext";
 
-const TransitionGrid = styled(Grid)<{ drawerWidth: number }>(
-  ({ theme, drawerWidth }) => ({
-    transition: theme.transitions.create("margin", {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
-    marginLeft: drawerWidth,
-    [theme.breakpoints.down("sm")]: {
-      marginLeft: 0,
-    },
-  })
-);
+const TransitionGrid = styled(Grid)(({ theme }) => ({
+  transition: theme.transitions.create("margin", {
+    easing: theme.transitions.easing.sharp,
+    duration: theme.transitions.duration.enteringScreen,
+  }),
+  [theme.breakpoints.down("sm")]: {
+    marginLeft: 0,
+  },
+}));
 
 const Applications = () => {
   const { isDrawerOpen } = useLayout();
-  const [drawerWidth, setDrawerWidth] = useState(0);
+  const [marginLeft, setMarginLeft] = useState(0);
 
   useEffect(() => {
-    setDrawerWidth(isDrawerOpen ? 200 : 65);
+    setMarginLeft(isDrawerOpen ? 200 : 65);
   }, [isDrawerOpen]);
 
   return (
-    <TransitionGrid drawerWidth={drawerWidth}>
+    <TransitionGrid style={{ marginLeft }}>
       <Grid item xs>
         <TopBar />
         <AppsHeader

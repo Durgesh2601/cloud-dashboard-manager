@@ -10,7 +10,7 @@ import { GoTools } from "react-icons/go";
 import Overview from "./Overview";
 import EnvironmentVars from "./Envs";
 import Alerts from "./Alerts";
-import EventHistory from "./EventHistory";
+import EventHistory from "./Overview/EventHistory";
 
 interface TabPanelProps {
   children?: React.ReactNode;
