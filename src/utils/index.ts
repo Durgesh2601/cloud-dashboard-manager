@@ -1,4 +1,5 @@
 export const calculateTimeElapsed = (updatedAt: string) => {
+  if (!updatedAt) return "Last updated: never";
   const lastUpdatedTime = new Date(parseInt(updatedAt) * 1000); // Convert to milliseconds
   const currentTime = new Date();
   const timeDiff = Math.abs(currentTime.getTime() - lastUpdatedTime.getTime());
