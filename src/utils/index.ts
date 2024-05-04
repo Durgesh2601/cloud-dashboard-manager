@@ -1,3 +1,5 @@
+import { Application } from "../pages/Applications";
+
 export const calculateTimeElapsed = (updatedAt: string) => {
   if (!updatedAt) return "Last updated: never";
   const lastUpdatedTime = new Date(parseInt(updatedAt) * 1000); // Convert to milliseconds
@@ -18,3 +20,26 @@ export const calculateTimeElapsed = (updatedAt: string) => {
     return `Last updated ${mins} ${mins === 1 ? "minute" : "minutes"} ago`;
   }
 };
+
+export const getAppNameById = (applications: Application[], id: number) => {
+  return applications.find((app) => app.id === id)?.name || `App ${id}`;
+};
+
+export const getChartOptions = (metricType: string) => ({
+  title: {
+    text: "",
+  },
+  xAxis: {
+    type: "datetime",
+  },
+  yAxis: {
+    title: {
+      text: `${metricType} Utilization`,
+    },
+  },
+  series: [
+    {
+      type: "line",
+    },
+  ],
+});
