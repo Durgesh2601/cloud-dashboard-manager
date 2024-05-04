@@ -29,15 +29,14 @@ const TransitionGrid = styled(Grid)(({ theme }) => ({
 const Applications = () => {
   const [marginLeft, setMarginLeft] = useState(0);
   const [applications, setApplications] = useState<Application[]>([]);
-  const [selectedApp, setSelectedApp] = useState<number | string>("");
-  const { isDrawerOpen } = useLayout();
+  const { isDrawerOpen, setSelectedApp } = useLayout();
 
   useEffect(() => {
     (async function fetchApplications() {
       try {
         const response = await getApplications();
         setApplications(response);
-        setSelectedApp(response[0].id);
+        setSelectedApp(response[0]);
       } catch (error) {
         console.error("Error fetching applications:", error);
       }
@@ -51,18 +50,8 @@ const Applications = () => {
   return (
     <TransitionGrid style={{ marginLeft }}>
       <Grid item xs>
-        <TopBar
-          applications={applications}
-          selectedApp={selectedApp}
-          setSelectedApp={setSelectedApp}
-        />
-        <AppsHeader
-          application={
-            selectedApp
-              ? applications?.find((app) => app.id === selectedApp)
-              : applications?.[0]
-          }
-        />
+        <TopBar applications={applications} />
+        <AppsHeader />
         <AppTabs />
       </Grid>
     </TransitionGrid>

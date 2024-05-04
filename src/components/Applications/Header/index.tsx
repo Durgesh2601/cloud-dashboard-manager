@@ -1,16 +1,16 @@
 import { Button, Grid, Typography } from "@mui/material";
-import { Application } from "../../../pages/Applications";
+import { useLayout } from "../../../context/LayoutContext";
+import { APP_STATUS_MAP } from "../../../constants";
 
-interface AppsHeaderProps {
-  application: Application;
-}
-
-const AppsHeader = ({ application }: AppsHeaderProps) => {
+const AppsHeader = () => {
+  const { selectedApp } = useLayout();
   return (
     <Grid container mt={2} ml={1} pl={1} pr={2}>
       <Grid item xs={12} display="flex" justifyContent="space-between">
-        <Typography variant="h5">{application?.name}</Typography>
-        <Button color="primary">Deployed</Button>
+        <Typography variant="h5">{selectedApp?.name}</Typography>
+        <Button color="primary">
+          {APP_STATUS_MAP[selectedApp?.status as keyof typeof APP_STATUS_MAP]}
+        </Button>
       </Grid>
     </Grid>
   );

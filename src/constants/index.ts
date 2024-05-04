@@ -6,3 +6,10 @@ export const commonGridStyles = {
   borderRadius: "0.5em",
   boxShadow: 1,
 };
+
+export const APP_STATUS_MAP = {
+  deployed: "Deployed",
+  pending: "Pending",
+  failed: "Failed",
+  inactive: "Inactive",
+};

@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import {
   Avatar,
   FormControl,
@@ -9,18 +8,21 @@ import {
   SelectChangeEvent,
 } from "@mui/material";
 import { orange } from "@mui/material/colors";
+import { useLayout } from "../../../context/LayoutContext";
 import { Application } from "../../../pages/Applications";
 
 interface TopBarProps {
   applications: Application[];
-  selectedApp: number | string;
-  setSelectedApp: (id: number) => void;
 }
 
-const TopBar = ({ applications, selectedApp, setSelectedApp }: TopBarProps) => {
+const TopBar = ({ applications }: TopBarProps) => {
+  const { selectedApp, setSelectedApp } = useLayout();
 
   const handleChangeApp = (event: SelectChangeEvent) => {
-    setSelectedApp(Number(event.target.value));
+    const selectedApp =
+      applications.find((app) => app.id === Number(event.target.value)) ||
+      ({} as Application);
+    setSelectedApp(selectedApp);
   };
 
   return (
@@ -39,7 +41,7 @@ const TopBar = ({ applications, selectedApp, setSelectedApp }: TopBarProps) => {
           <InputLabel id="select-app">Applications</InputLabel>
           <Select
             labelId="select-app"
-            value={String(selectedApp)}
+            value={String(selectedApp?.id)}
             onChange={handleChangeApp}
             autoWidth
             sx={{

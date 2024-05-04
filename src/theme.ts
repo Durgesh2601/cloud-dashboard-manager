@@ -16,6 +16,9 @@ const theme = createTheme({
   typography: {
     fontFamily: ["Inter, sans-serif"].join(","),
     fontSize: 12,
+    button: {
+      textTransform: "none",
+    },
   },
 });
 
