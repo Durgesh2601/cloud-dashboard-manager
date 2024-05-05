@@ -1,4 +1,4 @@
-import { Application } from "../pages/Applications";
+import { Application } from "../types";
 
 export const calculateTimeElapsed = (updatedAt: string) => {
   if (!updatedAt) return "Last updated: never";

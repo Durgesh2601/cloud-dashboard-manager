@@ -11,23 +11,7 @@ import Overview from "./Overview";
 import EnvironmentVars from "./Envs";
 import Alerts from "./Alerts";
 import EventHistory from "./Overview/EventHistory";
-
-interface TabPanelProps {
-  children?: React.ReactNode;
-  index: number;
-  value: number;
-}
-
-interface TabItem {
-  label: string;
-  key: string;
-  content: string;
-  icon: JSX.Element;
-}
-
-interface TabItemMap {
-  [key: string]: JSX.Element;
-}
+import { TabItem, TabItemMap, TabPanelProps } from "../../../types";
 
 const TabItems: TabItem[] = [
   {

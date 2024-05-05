@@ -34,3 +34,4 @@ export const METRIC_TYPE_KEY_MAP: { [key: string]: string } = {
 };
 
 export const API_CALLS_COUNT = 4;
+export const DRAWER_WIDTH = 200;

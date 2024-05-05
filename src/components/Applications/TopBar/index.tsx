@@ -9,11 +9,7 @@ import {
 } from "@mui/material";
 import { orange } from "@mui/material/colors";
 import { useLayout } from "../../../context/LayoutContext";
-import { Application } from "../../../pages/Applications";
-
-interface TopBarProps {
-  applications: Application[];
-}
+import { Application, TopBarProps } from "../../../types";
 
 const TopBar = ({ applications }: TopBarProps) => {
   const { selectedApp, setSelectedApp } = useLayout();

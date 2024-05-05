@@ -8,15 +8,6 @@ import { useLayout } from "../context/LayoutContext";
 import useFetchAppData from "../hooks/useFetchAppData";
 import LoadingComponent from "../components/LoadingComponent";
 
-export interface Application {
-  id: number;
-  name: string;
-  status: string;
-  version: string | null;
-  updatedAt: string;
-  desiredVersion: string;
-}
-
 const TransitionGrid = styled(Grid)(({ theme }) => ({
   transition: theme.transitions.create("margin", {
     easing: theme.transitions.easing.sharp,
@@ -44,7 +35,7 @@ const Applications = () => {
         <Grid item xs>
           <TopBar applications={applications} />
           <Button onClick={() => {
-            throw new Error("This is an error");
+            throw Error("This is an error");
           }}>Throw Error</Button>
           <AppsHeader />
           <AppTabs />

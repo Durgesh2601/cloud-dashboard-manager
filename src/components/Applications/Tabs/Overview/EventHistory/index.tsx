@@ -1,8 +1,9 @@
 import { Grid } from "@mui/material";
 import { RenderGridHeader } from "../../../../HelperComponents";
 import { commonGridStyles } from "../../../../../constants";
-import EventsHistoryTable, { EventType } from "./HistoryTable";
+import EventsHistoryTable from "./HistoryTable";
 import { useLayout } from "../../../../../context/LayoutContext";
+import { EventType } from "../../../../../types";
 
 const EventHistory = () => {
   const { eventHistory } = useLayout();

@@ -11,15 +11,7 @@ import {
   Typography,
   Button,
 } from "@mui/material";
-
-export type EventType = {
-  id: number;
-  event: string;
-  status: "successful" | "failed" | "in_progress";
-  version: string;
-  timestamp: string;
-  applicationId: string;
-};
+import { EventType } from "../../../../../types";
 
 const getStatusChipColor = (status: EventType["status"]) => {
   switch (status) {

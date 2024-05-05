@@ -6,13 +6,7 @@ import { RenderGridHeader } from "../../../../HelperComponents";
 import { commonGridStyles } from "../../../../../constants";
 import { useLayout } from "../../../../../context/LayoutContext";
 import { getAppNameById, getChartOptions } from "../../../../../utils";
-
-type AccType = {
-  [applicationId: string]: {
-    name: string;
-    data: Array<[number, number]>;
-  };
-};
+import { MetricDataType } from "../../../../../types";
 
 const SystemMetrics = () => {
   const [metricType, setMetricType] = useState<"CPU" | "Memory">("CPU");
@@ -26,35 +20,38 @@ const SystemMetrics = () => {
       metricType === "CPU" ? cpuUtilization : memoryUtilization;
     if (!metricData?.length) return;
     const newChartOptions = getChartOptions(metricType);
-    const seriesData = metricData?.reduce((acc: AccType, currentValue) => {
-      if (!acc[currentValue.applicationId]) {
-        acc[currentValue.applicationId] = {
-          name: getAppNameById(
-            applications,
-            Number(currentValue.applicationId)
-          ),
-          data: [],
-        };
-      }
-      let metricValue: string;
-      if (metricType === "CPU" && "cpuUtilization" in currentValue) {
-        metricValue = currentValue.cpuUtilization;
-      } else if (
-        metricType === "Memory" &&
-        "memoryUtilization" in currentValue
-      ) {
-        metricValue = currentValue.memoryUtilization;
-      } else {
-        // Handle the case where the metricType doesn't match the structure of currentValue
-        // You can throw an error, log a message, or handle it according to your requirement
+    const seriesData = metricData?.reduce(
+      (acc: MetricDataType, currentValue) => {
+        if (!acc[currentValue.applicationId]) {
+          acc[currentValue.applicationId] = {
+            name: getAppNameById(
+              applications,
+              Number(currentValue.applicationId)
+            ),
+            data: [],
+          };
+        }
+        let metricValue: string;
+        if (metricType === "CPU" && "cpuUtilization" in currentValue) {
+          metricValue = currentValue.cpuUtilization;
+        } else if (
+          metricType === "Memory" &&
+          "memoryUtilization" in currentValue
+        ) {
+          metricValue = currentValue.memoryUtilization;
+        } else {
+          // Handle the case where the metricType doesn't match the structure of currentValue
+          // You can throw an error, log a message, or handle it according to your requirement
+          return acc;
+        }
+        acc[currentValue.applicationId].data.push([
+          Number(currentValue.timestamp) * 1000,
+          Number(metricValue),
+        ]);
         return acc;
-      }
-      acc[currentValue.applicationId].data.push([
-        Number(currentValue.timestamp) * 1000,
-        Number(metricValue),
-      ]);
-      return acc;
-    }, {} as AccType);
+      },
+      {} as MetricDataType
+    );
     setChartOptions({
       ...newChartOptions,
       series: Object.values(seriesData),
