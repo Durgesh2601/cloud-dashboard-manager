@@ -22,6 +22,7 @@ import {
   getMappedEnvs,
   storeEnvsInLocalStorage,
 } from "../../../../utils";
+import { Message } from "@mui/icons-material";
 
 interface EnvVar {
   name: string;
@@ -98,6 +99,21 @@ const EnvironmentVars: React.FC = () => {
     setEnvs(filteredEnvs);
   };
 
+  const downloadEnvs = () => {
+    if (!selectedApp) return;
+    const storedEnvs = getEnvsFromLocalStorage()?.[selectedApp?.id];
+    const envsJson = JSON.stringify(storedEnvs, null, 2);
+    const blob = new Blob([envsJson], { type: "application/json" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "environment_variables.json";
+    document.body.appendChild(a);
+    a.click();
+    URL.revokeObjectURL(url);
+    document.body.removeChild(a);
+  };
+
   return (
     <Grid
       container
@@ -113,7 +129,7 @@ const EnvironmentVars: React.FC = () => {
             sx={{ ...iconStyle, cursor: "pointer" }}
             onClick={toggleDrawer}
           />
-          <DownloadIcon sx={{ ...iconStyle }} />
+          <DownloadIcon sx={{ ...iconStyle }} onClick={downloadEnvs} />
         </Box>
       </Grid>
       {Boolean(envs?.length) ? (
@@ -124,6 +140,7 @@ const EnvironmentVars: React.FC = () => {
               ...commonBoxStyles,
             }}
             ml={2}
+            mb={1}
             pt={1}
             pb={1}
             pl={2}
