@@ -3,10 +3,7 @@ import { Box, Grid, Tab, Tabs } from "@mui/material";
 import * as Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
 import { RenderGridHeader } from "../../../../HelperComponents";
-import {
-  METRIC_TYPE_KEY_MAP,
-  commonGridStyles,
-} from "../../../../../constants";
+import { commonGridStyles } from "../../../../../constants";
 import { useLayout } from "../../../../../context/LayoutContext";
 import { getAppNameById, getChartOptions } from "../../../../../utils";
 
