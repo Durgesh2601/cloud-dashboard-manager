@@ -32,3 +32,5 @@ export const METRIC_TYPE_KEY_MAP: { [key: string]: string } = {
   CPU: "cpuUtilization",
   Memory: "memoryUtilization",
 };
+
+export const API_CALLS_COUNT = 4;
