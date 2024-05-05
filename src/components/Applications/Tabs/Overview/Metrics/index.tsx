@@ -74,7 +74,7 @@ const SystemMetrics = () => {
       p={2}
     >
       <RenderGridHeader title={"System metrics"} />
-      <Box mt={2} pr={1} mb={3}>
+      <Box mt={2} pr={1} mb={1}>
         <Tabs
           value={metricType}
           onChange={(e, newValue) => handleTabChange(e, newValue)}

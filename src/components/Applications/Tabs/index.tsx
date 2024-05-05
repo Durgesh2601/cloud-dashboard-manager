@@ -1,8 +1,5 @@
 import { useState } from "react";
-import Tabs from "@mui/material/Tabs";
-import Tab from "@mui/material/Tab";
-import Typography from "@mui/material/Typography";
-import Box from "@mui/material/Box";
+import { Grid, Tabs, Tab, Box, Typography } from "@mui/material";
 import ComputerIcon from "@mui/icons-material/Computer";
 import WarningAmberIcon from "@mui/icons-material/WarningAmber";
 import HistoryIcon from "@mui/icons-material/History";
@@ -12,7 +9,6 @@ import EnvironmentVars from "./Envs";
 import Alerts from "./Alerts";
 import EventHistory from "./Overview/EventHistory";
 import { TabItem, TabItemMap, TabPanelProps } from "../../../types";
-import { Grid } from "@mui/material";
 
 const TabItems: TabItem[] = [
   {

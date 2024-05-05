@@ -26,6 +26,7 @@ export const APP_STATUS_MAP: { [key: string]: string } = {
   pending: "Pending",
   failed: "Failed",
   inactive: "Inactive",
+  uninstalled: "Uninstalled",
 };
 
 export const METRIC_TYPE_KEY_MAP: { [key: string]: string } = {
