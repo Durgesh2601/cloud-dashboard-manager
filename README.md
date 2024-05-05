@@ -30,7 +30,7 @@ The Cloud Application Manager is built using the following technologies:
 
 ## Installation
 
-To run the Cloud Application Manager application locally, follow these steps:
+To run the Cloud Dashboard Manager application locally, follow these steps:
 
 1. Clone this repository to your local machine:
 
@@ -74,7 +74,7 @@ To run the Cloud Application Manager application locally, follow these steps:
 
 ### Custom Hooks
 
-The Cloud Application Manager utilizes custom hooks to manage data fetching and state management. The `useFetchAppData` hook is responsible for fetching application data from APIs and updating the application state. It ensures that data is fetched and updated before rendering the UI, providing a seamless user experience.
+The Cloud Dashboard Manager utilizes custom hooks to manage data fetching and state management. The `useFetchAppData` hook is responsible for fetching application data from APIs and updating the application state. It ensures that data is fetched and updated before rendering the UI, providing a seamless user experience.
 
 ### Error Boundary
 
