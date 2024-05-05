@@ -25,7 +25,7 @@ The Cloud Application Manager is built using the following technologies:
   - TypeScript: Superset of JavaScript with static typing
   - React Router: Library for routing in React applications
   - Context API: React feature for managing global state
-  - Fetch API: For making HTTP requests to fetch data from APIs
+  - Axios: Promise-based HTTP client for making HTTP requests
   - Vercel: Deployment platform for hosting the application online
 
 ## Installation
