@@ -5,6 +5,21 @@ import TopBar from "../components/Applications/TopBar";
 import AppsHeader from "../components/Applications/Header";
 import AppTabs from "../components/Applications/Tabs";
 import { useLayout } from "../context/LayoutContext";
+import {
+  getAppCpuUtilization,
+  getAppEventHistory,
+  getAppMemoryUtilization,
+  getApplications,
+} from "../api";
+
+export interface Application {
+  id: number;
+  name: string;
+  status: string;
+  version: string | null;
+  updatedAt: string;
+  desiredVersion: string;
+}
 
 const TransitionGrid = styled(Grid)(({ theme }) => ({
   transition: theme.transitions.create("margin", {
@@ -17,8 +32,60 @@ const TransitionGrid = styled(Grid)(({ theme }) => ({
 }));
 
 const Applications = () => {
-  const { isDrawerOpen } = useLayout();
   const [marginLeft, setMarginLeft] = useState(0);
+  const {
+    applications,
+    setApplications,
+    isDrawerOpen,
+    setSelectedApp,
+    setEventHistory,
+    setMemoryUtilization,
+    setCpuUtilization,
+  } = useLayout();
+
+  const fetchApplications = async () => {
+    try {
+      const response = await getApplications();
+      setApplications(response);
+      setSelectedApp(response[0]);
+    } catch (error) {
+      console.error("Error fetching applications:", error);
+    }
+  };
+
+  const fetchEventHistory = async () => {
+    try {
+      const response = await getAppEventHistory();
+      setEventHistory(response);
+    } catch (error) {
+      console.error("Error fetching event history:", error);
+    }
+  };
+
+  const fetchMemoryUtilization = async () => {
+    try {
+      const response = await getAppMemoryUtilization();
+      setMemoryUtilization(response);
+    } catch (error) {
+      console.error("Error fetching memory utilization:", error);
+    }
+  };
+
+  const fetchCpuUtilization = async () => {
+    try {
+      const response = await getAppCpuUtilization();
+      setCpuUtilization(response);
+    } catch (error) {
+      console.error("Error fetching CPU utilization:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchApplications();
+    fetchEventHistory();
+    fetchMemoryUtilization();
+    fetchCpuUtilization();
+  }, []);
 
   useEffect(() => {
     setMarginLeft(isDrawerOpen ? 200 : 65);
@@ -27,13 +94,8 @@ const Applications = () => {
   return (
     <TransitionGrid style={{ marginLeft }}>
       <Grid item xs>
-        <TopBar />
-        <AppsHeader
-          application={{
-            id: 1,
-            name: "tic-tac-toc",
-          }}
-        />
+        <TopBar applications={applications} />
+        <AppsHeader />
         <AppTabs />
       </Grid>
     </TransitionGrid>
