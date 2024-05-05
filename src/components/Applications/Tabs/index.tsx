@@ -1,8 +1,5 @@
 import { useState } from "react";
-import Tabs from "@mui/material/Tabs";
-import Tab from "@mui/material/Tab";
-import Typography from "@mui/material/Typography";
-import Box from "@mui/material/Box";
+import { Grid, Tabs, Tab, Box, Typography } from "@mui/material";
 import ComputerIcon from "@mui/icons-material/Computer";
 import WarningAmberIcon from "@mui/icons-material/WarningAmber";
 import HistoryIcon from "@mui/icons-material/History";
@@ -11,23 +8,7 @@ import Overview from "./Overview";
 import EnvironmentVars from "./Envs";
 import Alerts from "./Alerts";
 import EventHistory from "./Overview/EventHistory";
-
-interface TabPanelProps {
-  children?: React.ReactNode;
-  index: number;
-  value: number;
-}
-
-interface TabItem {
-  label: string;
-  key: string;
-  content: string;
-  icon: JSX.Element;
-}
-
-interface TabItemMap {
-  [key: string]: JSX.Element;
-}
+import { TabItem, TabItemMap, TabPanelProps } from "../../../types";
 
 const TabItems: TabItem[] = [
   {
@@ -99,8 +80,8 @@ const AppTabs = () => {
   };
 
   return (
-    <Box sx={{ width: "100%" }}>
-      <Box>
+    <Grid item sx={{ width: "100%" }}>
+      <Box pl={2}>
         <Tabs
           value={value}
           onChange={handleChange}
@@ -130,7 +111,7 @@ const AppTabs = () => {
           {TabItemMap[tab.key] || null}
         </CustomTabPanel>
       ))}
-    </Box>
+    </Grid>
   );
 };
 

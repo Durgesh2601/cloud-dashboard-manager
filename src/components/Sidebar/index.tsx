@@ -21,11 +21,10 @@ import {
 import { PrimaryMenuItems, SecondaryMenuItems } from "./MenuItems";
 import Logo from "../../assets/Logo.svg";
 import { useLayout } from "../../context/LayoutContext";
-
-const drawerWidth = 200;
+import { DRAWER_WIDTH } from "../../constants";
 
 const openedMixin = (theme: Theme): CSSObject => ({
-  width: drawerWidth,
+  width: DRAWER_WIDTH,
   transition: theme.transitions.create("width", {
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.enteringScreen,
@@ -124,7 +123,7 @@ function Sidebar() {
       variant="permanent"
       open={isDrawerOpen}
       sx={{
-        width: drawerWidth,
+        width: DRAWER_WIDTH,
         ...(isDrawerOpen && {
           ...openedMixin,
           "& .MuiDrawer-paper": openedMixin,

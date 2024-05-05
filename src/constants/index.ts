@@ -26,6 +26,7 @@ export const APP_STATUS_MAP: { [key: string]: string } = {
   pending: "Pending",
   failed: "Failed",
   inactive: "Inactive",
+  uninstalled: "Uninstalled",
 };
 
 export const METRIC_TYPE_KEY_MAP: { [key: string]: string } = {
@@ -34,3 +35,4 @@ export const METRIC_TYPE_KEY_MAP: { [key: string]: string } = {
 };
 
 export const API_CALLS_COUNT = 4;
+export const DRAWER_WIDTH = 200;

@@ -22,12 +22,7 @@ import {
   getMappedEnvs,
   storeEnvsInLocalStorage,
 } from "../../../../utils";
-import { Message } from "@mui/icons-material";
-
-interface EnvVar {
-  name: string;
-  value: string;
-}
+import { EnvVar } from "../../../../types";
 
 const EnvironmentVars: React.FC = () => {
   const [isDrawerOpen, setIsDrawerOpen] = useState<boolean>(false);

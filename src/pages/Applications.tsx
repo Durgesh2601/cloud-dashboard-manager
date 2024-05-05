@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Button, Grid } from "@mui/material";
+import { Grid } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import TopBar from "../components/Applications/TopBar";
 import AppsHeader from "../components/Applications/Header";
@@ -7,15 +7,6 @@ import AppTabs from "../components/Applications/Tabs";
 import { useLayout } from "../context/LayoutContext";
 import useFetchAppData from "../hooks/useFetchAppData";
 import LoadingComponent from "../components/LoadingComponent";
-
-export interface Application {
-  id: number;
-  name: string;
-  status: string;
-  version: string | null;
-  updatedAt: string;
-  desiredVersion: string;
-}
 
 const TransitionGrid = styled(Grid)(({ theme }) => ({
   transition: theme.transitions.create("margin", {
@@ -43,9 +34,6 @@ const Applications = () => {
       ) : (
         <Grid item xs>
           <TopBar applications={applications} />
-          <Button onClick={() => {
-            throw new Error("This is an error");
-          }}>Throw Error</Button>
           <AppsHeader />
           <AppTabs />
         </Grid>

@@ -9,46 +9,9 @@ import {
   TableHead,
   TableRow,
   Typography,
-  Button,
 } from "@mui/material";
-
-export type EventType = {
-  id: number;
-  event: string;
-  status: "successful" | "failed" | "in_progress";
-  version: string;
-  timestamp: string;
-  applicationId: string;
-};
-
-const getStatusChipColor = (status: EventType["status"]) => {
-  switch (status) {
-    case "successful":
-      return "primary";
-    case "failed":
-      return "error";
-    case "in_progress":
-      return "warning";
-    default:
-      return "default";
-  }
-};
-
-const renderTimeAgo = (timestamp: string) => {
-  const diff = Math.floor((Date.now() - Number(timestamp) * 1000) / 1000);
-  const minutes = Math.floor(diff / 60);
-  const hours = Math.floor(minutes / 60);
-  const days = Math.floor(hours / 24);
-  if (days > 0) {
-    return `${days} day(s) ago`;
-  } else if (hours > 0) {
-    return `${hours} hour(s) ago`;
-  } else if (minutes > 0) {
-    return `${minutes} minute(s) ago`;
-  } else {
-    return `Just now`;
-  }
-};
+import { EventType } from "../../../../../types";
+import { getStatusChipColor, getStatusLabel, renderTimeAgo } from "../../../../../utils";
 
 const EventsHistoryTable: React.FC<{ data: EventType[] }> = ({ data = [] }) => {
   const [showAll, setShowAll] = useState(false);
@@ -60,22 +23,29 @@ const EventsHistoryTable: React.FC<{ data: EventType[] }> = ({ data = [] }) => {
   };
 
   return (
-    <Box pl={2} pt={3}>
+    <Box pl={2} pt={1.5}>
       <TableContainer>
         <Table>
           <TableHead>
             <TableRow>
-              <TableCell width="35%">Event</TableCell>
-              <TableCell width="32%">Version</TableCell>
-              <TableCell width="32%">Status</TableCell>
+              <TableCell width="35%">
+                <Typography variant="body1" fontWeight="bold">
+                  Event
+                </Typography>
+              </TableCell>
+              <TableCell width="32%">
+                <Typography variant="body1" fontWeight="bold">
+                  Version
+                </Typography>
+              </TableCell>
+              <TableCell width="32%">
+                <Typography variant="body1" fontWeight="bold">
+                  Status
+                </Typography>
+              </TableCell>
             </TableRow>
           </TableHead>
-          <TableBody
-            sx={{
-              maxHeight: "68vh",
-              overflow: "auto",
-            }}
-          >
+          <TableBody>
             {displayData.map((row) => (
               <TableRow key={row.id}>
                 <TableCell>
@@ -87,8 +57,9 @@ const EventsHistoryTable: React.FC<{ data: EventType[] }> = ({ data = [] }) => {
                 <TableCell>{row.version}</TableCell>
                 <TableCell>
                   <Chip
-                    label={row.status}
+                    label={getStatusLabel(row.status)}
                     color={getStatusChipColor(row.status)}
+                    size="small"
                   />
                 </TableCell>
               </TableRow>
@@ -98,7 +69,7 @@ const EventsHistoryTable: React.FC<{ data: EventType[] }> = ({ data = [] }) => {
       </TableContainer>
       <Box mt={4} pl={1}>
         <a href="#" onClick={handleToggleShowAll}>
-          View {showAll ? "less" : "all"}
+          View {showAll ? "less" : "more"}
         </a>
       </Box>
     </Box>

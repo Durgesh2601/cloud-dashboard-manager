@@ -1,4 +1,4 @@
-import { Application } from "../pages/Applications";
+import { Application, EventType } from "../types";
 
 export const calculateTimeElapsed = (updatedAt: string) => {
   if (!updatedAt) return "Last updated: never";
@@ -59,4 +59,46 @@ export const getMappedEnvs = (storedEnvs: Record<string, string>) => {
     name,
     value,
   }));
+};
+
+export const getStatusChipColor = (status: EventType["status"]) => {
+  switch (status) {
+    case "successful":
+      return "success";
+    case "failed":
+      return "error";
+    case "in_progress":
+      return "info";
+    default:
+      return "default";
+  }
+};
+
+export const renderTimeAgo = (timestamp: string) => {
+  const diff = Math.floor((Date.now() - Number(timestamp) * 1000) / 1000);
+  const minutes = Math.floor(diff / 60);
+  const hours = Math.floor(minutes / 60);
+  const days = Math.floor(hours / 24);
+  if (days > 0) {
+    return `${days} day(s) ago`;
+  } else if (hours > 0) {
+    return `${hours} hour(s) ago`;
+  } else if (minutes > 0) {
+    return `${minutes} minute(s) ago`;
+  } else {
+    return `Just now`;
+  }
+};
+
+export const getStatusLabel = (status: string) => {
+  switch (status) {
+    case "successful":
+      return "Successful";
+    case "failed":
+      return "Failed";
+    case "in_progress":
+      return "In Progress";
+    default:
+      return "";
+  }
 };

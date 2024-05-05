@@ -1,8 +1,5 @@
 import { Typography } from "@mui/material";
-
-interface RenderGridHeaderProps {
-  title: string;
-}
+import { RenderGridHeaderProps } from "../../types";
 
 export const RenderGridHeader = ({ title }: RenderGridHeaderProps) => {
   return (
