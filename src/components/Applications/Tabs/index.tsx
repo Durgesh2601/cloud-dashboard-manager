@@ -12,6 +12,7 @@ import EnvironmentVars from "./Envs";
 import Alerts from "./Alerts";
 import EventHistory from "./Overview/EventHistory";
 import { TabItem, TabItemMap, TabPanelProps } from "../../../types";
+import { Grid } from "@mui/material";
 
 const TabItems: TabItem[] = [
   {
@@ -83,8 +84,8 @@ const AppTabs = () => {
   };
 
   return (
-    <Box sx={{ width: "100%" }}>
-      <Box>
+    <Grid item sx={{ width: "100%" }}>
+      <Box pl={2}>
         <Tabs
           value={value}
           onChange={handleChange}
@@ -114,7 +115,7 @@ const AppTabs = () => {
           {TabItemMap[tab.key] || null}
         </CustomTabPanel>
       ))}
-    </Box>
+    </Grid>
   );
 };
 

@@ -25,12 +25,13 @@ const TopBar = ({ applications }: TopBarProps) => {
     <Grid
       container
       sx={{
-        minHeight: "4.5em",
+        minHeight: "4.6em",
         borderBottom: "1px solid #e0e0e0",
       }}
       direction="row"
       justifyContent="space-between"
       alignItems="center"
+      pl={2}
     >
       <Grid item>
         <FormControl sx={{ mt: 2, minWidth: 80 }}>

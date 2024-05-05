@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Button, Grid } from "@mui/material";
+import { Grid } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import TopBar from "../components/Applications/TopBar";
 import AppsHeader from "../components/Applications/Header";
@@ -34,9 +34,6 @@ const Applications = () => {
       ) : (
         <Grid item xs>
           <TopBar applications={applications} />
-          <Button onClick={() => {
-            throw Error("This is an error");
-          }}>Throw Error</Button>
           <AppsHeader />
           <AppTabs />
         </Grid>
