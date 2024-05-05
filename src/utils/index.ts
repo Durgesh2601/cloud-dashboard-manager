@@ -43,3 +43,20 @@ export const getChartOptions = (metricType: string) => ({
     },
   ],
 });
+
+export const getEnvsFromLocalStorage = () => {
+  const storedEnvs = localStorage.getItem("env_vars");
+  if (!storedEnvs) return null;
+  return JSON.parse(storedEnvs);
+};
+
+export const storeEnvsInLocalStorage = (payload: any) => {
+  localStorage.setItem("env_vars", JSON.stringify(payload));
+};
+
+export const getMappedEnvs = (storedEnvs: Record<string, string>) => {
+  return Object.entries(storedEnvs).map(([name, value]) => ({
+    name,
+    value,
+  }));
+};

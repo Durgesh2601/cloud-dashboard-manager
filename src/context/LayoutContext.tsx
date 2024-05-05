@@ -41,7 +41,7 @@ interface LayoutContextType {
   setApplications: React.Dispatch<React.SetStateAction<Application[]>>;
 }
 
-const LayoutContext = createContext<LayoutContextType | undefined>(undefined);
+export const LayoutContext = createContext<LayoutContextType | undefined>(undefined);
 
 export const LayoutProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
