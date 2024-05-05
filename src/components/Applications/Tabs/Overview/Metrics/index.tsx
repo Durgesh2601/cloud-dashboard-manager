@@ -61,6 +61,11 @@ const SystemMetrics = () => {
     });
   }, [metricType]);
 
+  const handleTabChange = (e: React.SyntheticEvent, newValue: string) => {
+    console.log(e);
+    setMetricType(newValue as "CPU" | "Memory");
+  };
+
   return (
     <Grid
       item
@@ -75,9 +80,7 @@ const SystemMetrics = () => {
       <Box mt={2} pr={1} mb={3}>
         <Tabs
           value={metricType}
-          onChange={(e, newValue) =>
-            setMetricType(newValue as "CPU" | "Memory")
-          }
+          onChange={(e, newValue) => handleTabChange(e, newValue)}
         >
           <Tab
             label="CPU"
